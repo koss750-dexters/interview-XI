@@ -1,6 +1,12 @@
 # Loan Application API
+## Implementation timeline
 
-Simple loan request processing API built with Yii2, PostgreSQL, and Docker.
+- Requirements analysis: 10 min
+- Architecture & Docker setup: 45 min  
+- Implementation (TDD): 1 hour
+- Testing & validation: 45 min
+- Documentation: 36 min
+- **Approximate total: 3 hours**
 
 ## Quick Start
 
@@ -8,9 +14,7 @@ Simple loan request processing API built with Yii2, PostgreSQL, and Docker.
 docker-compose up -d
 ```
 
-API available at `http://localhost`
-
-## Endpoints
+## Endpoints available at `http://localhost`
 
 ### Submit Loan Request
 ```
@@ -68,11 +72,11 @@ GET /processor?delay=5
 ## Development
 
 ```bash
-# Run tests
-docker-compose exec php vendor/bin/phpunit
-
 # Database migrations
 docker-compose exec php ./yii migrate
+
+# Run tests
+docker-compose exec php vendor/bin/phpunit
 
 # Logs
 docker-compose logs -f
@@ -100,12 +104,3 @@ curl -X POST http://localhost/requests \
 # Process requests  
 curl "http://localhost/processor?delay=5"
 ```
-
-## Time Spent
-
-- Requirements analysis: 10 min
-- Architecture & Docker setup: 45 min  
-- Implementation (TDD): 1 hour
-- Testing & validation: 45 min
-- Documentation: 36 min
-- **Approximate total: 3 hours**
