@@ -103,9 +103,9 @@ curl "http://localhost/processor?delay=5"
 
 ## Time Spent
 
-- Requirements analysis: 30 minutes
-- Architecture & Docker setup: 1.5 hours  
-- Implementation (TDD approach): 3 hours
-- Testing & validation: 1 hour
-- Documentation: 30 minutes
-- **Total: 6.5 hours**
+- Requirements analysis: 10 min
+- Architecture & Docker setup: 45 min  
+- Implementation (TDD): 1 hour
+- Testing & validation: 45 min
+- Documentation: 36 min
+- **Approximate total: 3 hours**
