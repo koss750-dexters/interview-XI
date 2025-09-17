@@ -14,7 +14,7 @@
 docker-compose up -d
 ```
 
-## Endpoints available at `http://localhost`
+## Endpoints available for `http://localhost`
 
 ### Submit Loan Request
 ```
