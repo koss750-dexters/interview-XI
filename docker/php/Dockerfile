@@ -17,12 +17,21 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
+# Configure Git safe directory for Composer and clear cache
+RUN git config --global --add safe.directory /var/www/html && \
+    composer clear-cache
+
 # Copy application first
 COPY . .
 
+# Ensure vendor/bin exists and configure Composer's bin-dir
+RUN mkdir -p vendor/bin && composer config bin-dir vendor/bin
+
 # Allow Yii2 composer plugin and install dependencies
 RUN composer config --no-plugins allow-plugins.yiisoft/yii2-composer true && \
-    composer install --no-dev --optimize-autoloader
+    composer install --optimize-autoloader
+
+
 
 # Copy and set permissions for startup script
 COPY docker/php/start.sh /start.sh

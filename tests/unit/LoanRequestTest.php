@@ -59,10 +59,4 @@ class LoanRequestTest extends TestCase
         $request = new LoanRequest();
         $this->assertEquals('pending', $request->status);
     }
-    
-    public function testCannotCreateRequestForUserWithApprovedLoan()
-    {
-        // This will test business logic once we implement it
-        $this->markTestSkipped('To be implemented with business logic');
-    }
 }

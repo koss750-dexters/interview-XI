@@ -5,7 +5,7 @@
 - Architecture & Docker setup: 45 min  
 - Implementation (TDD): 1 hour
 - Testing & validation: 45 min
-- Documentation: 36 min
+- Debugging: 55 min
 - **Approximate total: 3 hours**
 
 ## Quick Start
@@ -71,29 +71,27 @@ GET /processor?delay=5
 
 ## Development
 
-```bash
-# Database migrations
-docker-compose exec php ./yii migrate
+The application automatically sets up the database and runs tests during container startup.
 
-# Run tests
+**Database Setup:**
+- Main database (`loans`) is created via `init.sql` 
+- Test database (`loans_test`) is created via `init.sql`
+- Table structures are managed via Yii2 migrations
+- All migrations run automatically during container startup
+
+```bash
+# Run tests (optional - already run during startup)
 docker-compose exec php vendor/bin/phpunit
+
+# Manual database migrations (optional - already run during startup)
+docker-compose exec php ./yii migrate
 
 # Logs
 docker-compose logs -f
 ```
 
-## Features Implemented
 
-- ✅ **POST /requests** - Submit loan applications with validation
-- ✅ **GET /processor** - Process pending requests with configurable delay  
-- ✅ **Business Logic** - 10% random approval rate, one loan per user
-- ✅ **Database** - PostgreSQL with proper constraints and indexes
-- ✅ **Docker** - Full containerised setup with Nginx, PHP-FPM, PostgreSQL
-- ✅ **Validation** - Input validation and error handling
-- ✅ **Concurrency** - Database-level locking for thread safety
-- ✅ **Testing** - PHPUnit setup with basic test framework
-
-## API Examples
+## API usage with Curl examples
 
 ```bash
 # Create loan request

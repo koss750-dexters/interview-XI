@@ -71,11 +71,40 @@ class LoanApiTest extends TestCase
     
     private function makeRequest($method, $path, $data = [])
     {
-        // Mock HTTP request - simplified for testing
-        // In real implementation, would use proper HTTP client
+        // Directly test the controller actions
+        $controller = new \app\controllers\LoanController('loan', \Yii::$app);
+        
+        // Mock the request
+        $request = \Yii::$app->request;
+        $request->setIsConsoleRequest(false);
+        $request->setUrl($path);
+        
+        // Set method and data
+        $_SERVER['REQUEST_METHOD'] = $method;
+        if ($method === 'POST' && !empty($data)) {
+            $request->setBodyParams($data);
+        } elseif ($method === 'GET' && !empty($data)) {
+            $request->setQueryParams($data);
+        }
+        
+        // Create response
+        $response = new \yii\web\Response();
+        \Yii::$app->set('response', $response);
+        
+        // Call the appropriate action
+        if ($path === '/requests') {
+            $result = $controller->actionCreate();
+        } elseif (strpos($path, '/processor') === 0) {
+            $query = parse_url($path, PHP_URL_QUERY);
+            parse_str($query, $params);
+            $result = $controller->actionProcess();
+        } else {
+            throw new \Exception("Unknown route: $path");
+        }
+        
         return [
-            'status' => 200,
-            'data' => ['result' => true]
+            'status' => $response->statusCode,
+            'data' => $result
         ];
     }
 }

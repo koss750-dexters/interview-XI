@@ -1,4 +1,7 @@
--- Create loan requests table
+-- Create test database
+CREATE DATABASE loans_test;
+
+-- Create loan requests table in main database
 CREATE TABLE loan_requests (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
