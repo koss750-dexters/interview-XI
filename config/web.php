@@ -34,8 +34,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'POST requests' => 'loan/create',
-                'GET processor' => 'loan/process',
+                '' => 'site/index',
+                'requests' => 'loan/create',
+                'processor' => 'loan/process',
             ],
         ],
     ],
